@@ -9,14 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Id;
+
 /**
  * Persistent account entity with JPA markup. Accounts are stored in an H2
  * relational database.
  * 
  * @author Paul Chapman
  */
-@Entity
-@Table(name = "T_ACCOUNT")
+
 public class Account implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -5,12 +5,17 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
+import org.springframework.data.r2dbc.repository.Query;
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+
+import reactor.core.publisher.Flux;
+
 /**
  * Repository for Account data implemented using Spring Data JPA.
  * 
  * @author Paul Chapman
  */
-public interface AccountRepository extends Repository<Account, Long> {
+public interface AccountRepository extends ReactiveCrudRepository<Account, Long> {
 	/**
 	 * Find an account with the specified account number.
 	 *
