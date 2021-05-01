@@ -1,8 +1,8 @@
-package io.pivotal.microservices.accounts;
+package com.example.accessingdatar2dbc;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Query;
+//import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 import org.springframework.data.r2dbc.repository.Query;

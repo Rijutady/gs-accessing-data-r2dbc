@@ -1,13 +1,13 @@
-package io.pivotal.microservices.accounts;
+package com.example.accessingdatar2dbc;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
 
 import org.springframework.data.annotation.Id;
 
@@ -29,7 +29,7 @@ public class Account implements Serializable {
 
 	protected String number;
 
-	@Column(name = "name")
+//	@Column(name = "name")
 	protected String owner;
 
 	protected BigDecimal balance;
