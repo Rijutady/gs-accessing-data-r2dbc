@@ -8,8 +8,10 @@ import java.math.RoundingMode;
 //import javax.persistence.Entity;
 //import javax.persistence.Id;
 //import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.Persistable;
 
 /**
  * Persistent account entity with JPA markup. Accounts are stored in an H2
@@ -18,14 +20,14 @@ import org.springframework.data.annotation.Id;
  * @author Paul Chapman
  */
 
-public class Account implements Serializable {
+public class Account implements Persistable {
 
-	private static final long serialVersionUID = 1L;
+//	private static final long serialVersionUID = 1L;
 
-	public static Long nextId = 0L;
+//	public static Long nextId = 0L;
 
 	@Id
-	protected Long id;
+	protected String id;
 
 	protected String number;
 
@@ -38,14 +40,14 @@ public class Account implements Serializable {
 	 * This is a very simple, and non-scalable solution to generating unique
 	 * ids. Not recommended for a real application. Consider using the
 	 * <tt>@GeneratedValue</tt> annotation and a sequence to generate ids.
-	 * 
+	 *
 	 * @return The next available id.
 	 */
-	protected static Long getNextId() {
-		synchronized (nextId) {
-			return nextId++;
-		}
-	}
+//	protected static Long getNextId() {
+//		synchronized (nextId) {
+//			return nextId++;
+//		}
+//	}
 
 	/**
 	 * Default constructor for JPA only.
@@ -55,23 +57,24 @@ public class Account implements Serializable {
 	}
 
 	public Account(String number, String owner) {
-		id = getNextId();
+//		id = getNextId();
+//		this.id = id;
 		this.number = number;
 		this.owner = owner;
 		balance = BigDecimal.ZERO;
 	}
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
 	/**
 	 * Set JPA id - for testing and JPA only. Not intended for normal use.
-	 * 
+	 *
 	 * @param id
 	 *            The new id.
 	 */
-	protected void setId(long id) {
+	protected void setId(String id) {
 		this.id = id;
 	}
 
@@ -103,9 +106,30 @@ public class Account implements Serializable {
 		balance.add(amount);
 	}
 
+	@Transient
+	private boolean newAccount;
+
+	@Override
+	@Transient
+	public boolean isNew() {
+		return this.newAccount || id == null;
+	}
+
+	public Account setAsNew(){
+		this.newAccount = true;
+		return this;
+	}
+
+//	@Override
+//	public String toString() {
+//		return number + " [" + owner + "]: $" + balance;
+//	}
+
 	@Override
 	public String toString() {
-		return number + " [" + owner + "]: $" + balance;
+		return String.format(
+				"Account[id=%s, number='%s', owner='%s', balance='%s']",
+				id, number, owner, balance);
 	}
 
 }

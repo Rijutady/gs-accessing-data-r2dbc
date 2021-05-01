@@ -1,10 +1,5 @@
 package com.example.accessingdatar2dbc;
 
-import com.example.accessingdatar2dbc.Account;
-import com.example.accessingdatar2dbc.AccountRepository;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import io.r2dbc.spi.ConnectionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +10,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.r2dbc.connectionfactory.init.ConnectionFactoryInitializer;
 import org.springframework.data.r2dbc.connectionfactory.init.ResourceDatabasePopulator;
-
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -44,7 +38,14 @@ public class AccessingDataR2dbcApplication {
 
 		return (args) -> {
 			// save a few customers
-			repository.saveAll(Arrays.asList(new Account("123456789", "Keri Lee"),
+//			repository.saveAll(Arrays.asList(new Account("1", "123456789", "Keri Lee"),
+//					new Account("2","123456001", "Dollie R. Schnidt"),
+//					new Account("3","123456002", "Cornelia J. LeClerc"),
+//					new Account("4","123456003", "Cynthia Rau"),
+//					new Account("5","123456004", "Douglas R. Cobbs")))
+//					.blockLast(Duration.ofSeconds(10));
+
+			repository.saveAll(Arrays.asList(new Account( "123456789", "Keri Lee"),
 					new Account("123456001", "Dollie R. Schnidt"),
 					new Account("123456002", "Cornelia J. LeClerc"),
 					new Account("123456003", "Cynthia Rau"),
