@@ -70,13 +70,13 @@ public class AccessingDataR2dbcApplication {
 			}).block(Duration.ofSeconds(10));
 
 
-//			// fetch customers by last name
-//			log.info("Account found with findByLastName('Bauer'):");
-//			log.info("--------------------------------------------");
-//			repository.findByLastName("Bauer").doOnNext(bauer -> {
-//				log.info(bauer.toString());
-//			}).blockLast(Duration.ofSeconds(10));;
-//			log.info("");
+			// fetch customers by owner
+			log.info("Account found with findByOwner('Cynthia Rau'):");
+			log.info("--------------------------------------------");
+			repository.findByOwner("Cynthia Rau").doOnNext(account -> {
+				log.info(account.toString());
+			}).blockLast(Duration.ofSeconds(10));;
+			log.info("");
 		};
 	}
 
