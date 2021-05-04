@@ -44,4 +44,7 @@ public interface AccountRepository extends ReactiveCrudRepository<Account, Long>
 
 	@Query("SELECT * FROM account WHERE LAST_NAME = :lastName")
 	Flux<Account> findByLastName(String lastName);
+
+	@Query("DELETE FROM account WHERE NUMBER = :accountNumber")
+	Flux<Account> deleteByNumber(String accountNumber);
 }

@@ -37,39 +37,41 @@ public class AccessingDataR2dbcApplication {
 	public CommandLineRunner demo(AccountRepository repository) {
 
 		return (args) -> {
-			// save a few customers
-			repository.saveAll(Arrays.asList(new Account( "123456789", "Lee", "Keri", 1233),
-					new Account("123456001", "Schnidt", "Dollie R. ", 35),
-					new Account("123456002", "LeClerc", "Cornelia J. ", 927),
-					new Account("123456003", "Rau", "Cynthia", 4567),
-					new Account("123456004", "Cobbs", "Douglas R. ", 423),
-					new Account("123456005", "Patel", "Michael", 3462),
-					new Account("123456006", "Wong", "Suzanne", 100),
-					new Account("123456007", "Jaya", "Ivan C. ", 5676),
-					new Account("123456008", "Ketterer", "Ida", 4553),
-					new Account("123456009", "Lucero", "Laina Ochoa", 5789),
-					new Account("123456010", "Montana", "Wesley M. ", 8912),
-					new Account("123456011", "McCleary", "Leslie F. ", 2300),
-					new Account("123456012", "Mudra", "Sayeed D. ", 3200),
-					new Account("123456013", "Domingo", "Pietronella J. ", 730),
-					new Account("123456014", "Leary", "John S. O ", 430),
-					new Account("123456015", "Smith", "Gladys D. ", 250),
-					new Account("123456016", "Thygesen", "Sally O. ", 202),
-					new Account("123456017", "Vogt", "Rachel", 2044),
-					new Account("123456018", "DeLong", "Julia", 2543),
-					new Account("123456019", "Rizzoli", "Mark T. ", 3453),
-					new Account("123456020", "Angelo", "Maria J. ", 2676)
+			// save a few accounts
+			repository.saveAll(Arrays.asList(new Account( "123456789", "Lee", "Keri", 1233L),
+					new Account("123456001", "Schnidt", "Dollie R. ", 35L),
+					new Account("123456002", "LeClerc", "Cornelia J. ", 927L),
+					new Account("123456003", "Rau", "Cynthia", 4567L),
+					new Account("123456004", "Cobbs", "Douglas R. ", 423L),
+					new Account("123456005", "Patel", "Michael", 3462L),
+					new Account("123456006", "Wong", "Suzanne", 100L),
+					new Account("123456007", "Jaya", "Ivan C. ", 5676L),
+					new Account("123456008", "Ketterer", "Ida", 4553L),
+					new Account("123456009", "Lucero", "Laina Ochoa", 5789L),
+					new Account("123456010", "Montana", "Wesley M. ", 8912L),
+					new Account("123456011", "McCleary", "Leslie F. ", 2300L),
+					new Account("123456012", "Mudra", "Sayeed D. ", 3200L),
+					new Account("123456013", "Domingo", "Pietronella J. ", 730L),
+					new Account("123456014", "Leary", "John S. O ", 430L),
+					new Account("123456015", "Smith", "Gladys D. ", 250L),
+					new Account("123456016", "Thygesen", "Sally O. ", 202L),
+					new Account("123456017", "Vogt", "Rachel", 2044L),
+					new Account("123456018", "DeLong", "Julia", 2543L),
+					new Account("123456019", "Rizzoli", "Mark T. ", 3453L),
+					new Account("123456020", "Angelo", "Maria J. ", 2676L)
 					))
 					.blockLast(Duration.ofSeconds(10));
 
-//			repository.saveAll(Arrays.asList(new Account( "123456789", "Keri Lee"),
-//					new Account("123456001", "Dollie R. Schnidt"),
-//					new Account("123456002", "Cornelia J. LeClerc"),
-//					new Account("123456003", "Cynthia Rau"),
-//					new Account("123456004", "Douglas R. Cobbs")))
-//					.blockLast(Duration.ofSeconds(10));
+			// delete account by ID
+			log.info("");
+			log.info("Delete by number 123456001");
+			log.info("--------------------------------------------");
+			repository.deleteByNumber("123456001").doOnNext(account -> {
+				log.info(account.toString());
+			}).blockLast(Duration.ofSeconds(10));;
+			log.info("");
 
-			// fetch all customers
+			// fetch all accounts
 			log.info("Account found with findAll():");
 			log.info("-------------------------------");
 			repository.findAll().doOnNext(account -> {
@@ -78,7 +80,7 @@ public class AccessingDataR2dbcApplication {
 
 			log.info("");
 
-			// fetch an individual customer by ID
+			// fetch an individual account by ID
 			repository.findById(1L).doOnNext(account -> {
 				log.info("Account found with findById(1L):");
 				log.info("--------------------------------");
@@ -87,7 +89,7 @@ public class AccessingDataR2dbcApplication {
 			}).block(Duration.ofSeconds(10));
 
 
-			// fetch customers by owner
+			// fetch accounts by last name
 			log.info("Account found with findByLastName(\"Rau\"):");
 			log.info("--------------------------------------------");
 			repository.findByLastName("Rau").doOnNext(account -> {

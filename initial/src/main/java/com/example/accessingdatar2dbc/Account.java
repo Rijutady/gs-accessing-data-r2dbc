@@ -38,7 +38,7 @@ public class Account implements Persistable {
 
 	protected String firstName;
 
-	protected int balance;
+	protected Long balance;
 
 	/**
 	 * This is a very simple, and non-scalable solution to generating unique
@@ -60,7 +60,7 @@ public class Account implements Persistable {
 //		balance = BigDecimal.ZERO;
 //	}
 
-	public Account(String number, String lastName, String firstName, int balance) {
+	public Account(String number, String lastName, String firstName, Long balance) {
 //		id = getNextId();
 //		this.id = id;
 		this.number = number;
@@ -115,7 +115,7 @@ public class Account implements Persistable {
 		this.owner = owner;
 	}
 
-	public int getBalance() {
+	public long getBalance() {
 //		return balance.setScale(2, RoundingMode.HALF_EVEN);
 		return balance;
 	}
