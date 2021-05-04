@@ -144,7 +144,7 @@ public class Account implements Persistable {
 
 	@Override
 	public String toString() {
-		return number + " [" + lastName + "," + firstName + "]: $" + balance;
+		return number + " [" + lastName + ", " + firstName + "]: $" + balance;
 	}
 
 //	@Override
