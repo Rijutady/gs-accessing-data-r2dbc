@@ -9,6 +9,7 @@ import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import reactor.core.publisher.Flux;
+import java.lang.reflect.Parameter;
 
 /**
  * Repository for Account data implemented using Spring Data JPA.
@@ -32,7 +33,9 @@ public interface AccountRepository extends ReactiveCrudRepository<Account, Long>
 	 * @return The list of matching accounts - always non-null, but may be
 	 *         empty.
 	 */
-	public List<Account> findByOwnerContainingIgnoreCase(String partialName);
+//	public List<Account> findByOwnerContainingIgnoreCase(String partialName);
+	@Query("SELECT * FROM account WHERE LAST_NAME LIKE '%tana%'")
+	Flux<Account> findByOwnerContainingIgnoreCase();
 
 	/**
 	 * Fetch the number of accounts known to the system.

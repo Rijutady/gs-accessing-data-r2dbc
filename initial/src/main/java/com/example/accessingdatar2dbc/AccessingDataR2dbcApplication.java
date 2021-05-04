@@ -66,7 +66,7 @@ public class AccessingDataR2dbcApplication {
 			log.info("");
 			log.info("Delete by number 123456001");
 			log.info("--------------------------------------------");
-			repository.deleteByNumber("123456001").doOnNext(account -> {
+			repository.deleteByNumber("123456006").doOnNext(account -> {
 				log.info(account.toString());
 			}).blockLast(Duration.ofSeconds(10));;
 			log.info("");
@@ -101,6 +101,14 @@ public class AccessingDataR2dbcApplication {
 			log.info("Top 2 balance accounts:");
 			log.info("--------------------------------------------");
 			repository.searchTopTwoByBalance().doOnNext(account -> {
+				log.info(account.toString());
+			}).blockLast(Duration.ofSeconds(10));;
+			log.info("");
+
+			// fetch accounts by last name that contains search string
+			log.info("Account found with findByOwnerContainingIgnoreCase(\"tana\")");
+			log.info("--------------------------------------------");
+			repository.findByOwnerContainingIgnoreCase().doOnNext(account -> {
 				log.info(account.toString());
 			}).blockLast(Duration.ofSeconds(10));;
 			log.info("");

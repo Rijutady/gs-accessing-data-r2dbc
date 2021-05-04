@@ -27,7 +27,7 @@ public class Account implements Persistable {
 //	public static Long nextId = 0L;
 
 	@Id
-	protected String id;
+	protected Long id;
 
 	protected String number;
 
@@ -69,7 +69,7 @@ public class Account implements Persistable {
 		this.balance = balance;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
@@ -79,7 +79,7 @@ public class Account implements Persistable {
 	 * @param id
 	 *            The new id.
 	 */
-	protected void setId(String id) {
+	protected void setId(Long id) {
 		this.id = id;
 	}
 
