@@ -47,4 +47,7 @@ public interface AccountRepository extends ReactiveCrudRepository<Account, Long>
 
 	@Query("DELETE FROM account WHERE NUMBER = :accountNumber")
 	Flux<Account> deleteByNumber(String accountNumber);
+
+	@Query("SELECT * FROM account ORDER BY balance DESC LIMIT 2")
+	Flux<Account> searchTopTwoByBalance();
 }

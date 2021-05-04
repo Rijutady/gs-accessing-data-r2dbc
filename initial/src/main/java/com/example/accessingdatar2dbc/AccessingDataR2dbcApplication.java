@@ -96,6 +96,14 @@ public class AccessingDataR2dbcApplication {
 				log.info(account.toString());
 			}).blockLast(Duration.ofSeconds(10));;
 			log.info("");
+
+			// fetch top 2 accounts by balance
+			log.info("Top 2 balance accounts:");
+			log.info("--------------------------------------------");
+			repository.searchTopTwoByBalance().doOnNext(account -> {
+				log.info(account.toString());
+			}).blockLast(Duration.ofSeconds(10));;
+			log.info("");
 		};
 	}
 
