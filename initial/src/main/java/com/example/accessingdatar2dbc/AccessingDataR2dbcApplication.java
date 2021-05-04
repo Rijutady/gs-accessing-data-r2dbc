@@ -38,19 +38,19 @@ public class AccessingDataR2dbcApplication {
 
 		return (args) -> {
 			// save a few customers
-//			repository.saveAll(Arrays.asList(new Account("1", "123456789", "Keri Lee"),
-//					new Account("2","123456001", "Dollie R. Schnidt"),
-//					new Account("3","123456002", "Cornelia J. LeClerc"),
-//					new Account("4","123456003", "Cynthia Rau"),
-//					new Account("5","123456004", "Douglas R. Cobbs")))
-//					.blockLast(Duration.ofSeconds(10));
-
-			repository.saveAll(Arrays.asList(new Account( "123456789", "Keri Lee"),
-					new Account("123456001", "Dollie R. Schnidt"),
-					new Account("123456002", "Cornelia J. LeClerc"),
-					new Account("123456003", "Cynthia Rau"),
-					new Account("123456004", "Douglas R. Cobbs")))
+			repository.saveAll(Arrays.asList(new Account( "123456789", "Lee", "Keri", 1000),
+					new Account("123456001", "R. Schnidt", "Dollie", 2500),
+					new Account("123456002", "J. LeClerc", "Cornelia", 800),
+					new Account("123456003", "Rau", "Cynthia", 2000),
+					new Account("123456004", "R. Cobbs", "Douglas", 500)))
 					.blockLast(Duration.ofSeconds(10));
+
+//			repository.saveAll(Arrays.asList(new Account( "123456789", "Keri Lee"),
+//					new Account("123456001", "Dollie R. Schnidt"),
+//					new Account("123456002", "Cornelia J. LeClerc"),
+//					new Account("123456003", "Cynthia Rau"),
+//					new Account("123456004", "Douglas R. Cobbs")))
+//					.blockLast(Duration.ofSeconds(10));
 
 			// fetch all customers
 			log.info("Account found with findAll():");
@@ -73,7 +73,7 @@ public class AccessingDataR2dbcApplication {
 			// fetch customers by owner
 			log.info("Account found with findByOwner('Cynthia Rau'):");
 			log.info("--------------------------------------------");
-			repository.findByOwner("Cynthia Rau").doOnNext(account -> {
+			repository.findByLastName("Rau").doOnNext(account -> {
 				log.info(account.toString());
 			}).blockLast(Duration.ofSeconds(10));;
 			log.info("");

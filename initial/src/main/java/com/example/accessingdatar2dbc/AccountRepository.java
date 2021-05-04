@@ -42,6 +42,6 @@ public interface AccountRepository extends ReactiveCrudRepository<Account, Long>
 	@Query("SELECT count(*) from Account")
 	public int countAccounts();
 
-	@Query("SELECT * FROM account WHERE owner = :owner")
-	Flux<Account> findByOwner(String owner);
+	@Query("SELECT * FROM account WHERE LAST_NAME = :lastName")
+	Flux<Account> findByLastName(String lastName);
 }
