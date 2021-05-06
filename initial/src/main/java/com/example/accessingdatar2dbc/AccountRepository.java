@@ -9,6 +9,8 @@ import org.springframework.data.r2dbc.repository.Query;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
 import java.lang.reflect.Parameter;
 
 /**
@@ -34,7 +36,7 @@ public interface AccountRepository extends ReactiveCrudRepository<Account, Long>
 	 *         empty.
 	 */
 //	public List<Account> findByOwnerContainingIgnoreCase(String partialName);
-	@Query("SELECT * FROM account WHERE LAST_NAME LIKE '%tana%'")
+	@Query("SELECT * FROM account WHERE LAST_NAME LIKE '%ont%'")
 	Flux<Account> findByOwnerContainingIgnoreCase();
 
 	/**

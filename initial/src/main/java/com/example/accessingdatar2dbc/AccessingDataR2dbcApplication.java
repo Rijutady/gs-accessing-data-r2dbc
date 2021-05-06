@@ -106,7 +106,7 @@ public class AccessingDataR2dbcApplication {
 			log.info("");
 
 			// fetch accounts by last name that contains search string
-			log.info("Account found with findByOwnerContainingIgnoreCase(\"tana\")");
+			log.info("Account found with findByOwnerContainingIgnoreCase(\"ont\")");
 			log.info("--------------------------------------------");
 			repository.findByOwnerContainingIgnoreCase().doOnNext(account -> {
 				log.info(account.toString());

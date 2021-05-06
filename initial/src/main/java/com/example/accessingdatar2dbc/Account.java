@@ -92,7 +92,7 @@ public class Account implements Persistable {
 	}
 
 	public String getFirstName() {
-		return number;
+		return firstName;
 	}
 
 	protected void setFirstName(String firstName) {
@@ -100,7 +100,7 @@ public class Account implements Persistable {
 	}
 
 	public String getLastName() {
-		return number;
+		return lastName;
 	}
 
 	protected void setLastName(String lastName) {
